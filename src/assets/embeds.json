@@ -1,0 +1,28 @@
+[
+  {
+    "embeds": [
+      {
+        "title": "Unknown Error",
+        "description": "%emoji_error% An unknown error occurred while executing this command. Please try again."
+      }
+    ]
+  },
+  {
+    "embeds": [
+      {
+        "title": "List Chat Channels",
+        "description": "%emoji_success% %channel%",
+        "fields": [
+          {
+            "name": "Logging",
+            "value": "%channel_types%"
+          },
+          {
+            "name": "Webhook Mode",
+            "value": "%webhooks%"
+          }
+        ]
+      }
+    ]
+  }
+]
