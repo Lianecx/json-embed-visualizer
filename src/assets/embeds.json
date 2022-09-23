@@ -1,28 +1,147 @@
-[
-  {
+{
+  "item": {
     "embeds": [
       {
-        "title": "Unknown Error",
-        "description": "%emoji_error% An unknown error occurred while executing this command. Please try again."
+        "title": "Item Information",
+        "description": "%emoji_success% Here's information about the **%name%**. [%count%/%max_count%]",
+        "author": {
+          "name": "%username%'s %slot_name% slot",
+          "icon_url": "%avatar%"
+        },
+        "footer": {
+          "text": "Item Id: %id%"
+        }
       }
     ]
   },
-  {
+  "item_durability": {
     "embeds": [
       {
-        "title": "List Chat Channels",
-        "description": "%emoji_success% %channel%",
         "fields": [
           {
-            "name": "Logging",
-            "value": "%channel_types%"
-          },
-          {
-            "name": "Webhook Mode",
-            "value": "%webhooks%"
+            "name": "Durability",
+            "value": "%durability%/%max_durability%",
+            "inline": true
           }
         ]
       }
     ]
+  },
+  "item_lore": {
+    "embeds": [
+      {
+        "fields": [
+          {
+            "name": "Lore",
+            "value": "%lore%",
+            "inline": true
+          }
+        ]
+      }
+    ]
+  },
+  "item_enchantments": {
+    "embeds": [
+      {
+        "fields": [
+          {
+            "name": "Enchantments",
+            "value": "%enchantments%",
+            "inline": true
+          }
+        ]
+      }
+    ]
+  },
+  "item_custom_name": {
+    "embeds": [
+      {
+        "fields": [
+          {
+            "name": "Custom Name",
+            "value": "**%custom_name%**\n%custom_name_json%",
+            "inline": true
+          }
+        ]
+      }
+    ]
+  },
+  "item_potion": {
+    "embeds": [
+      {
+        "fields": [
+          {
+            "name": "Potion Effects",
+            "value": "%effects%",
+            "inline": true
+          }
+        ]
+      }
+    ]
+  },
+  "button": {
+    "components": [
+      {
+        "type": "Button",
+        "style": "Primary",
+        "custom_id": "slot_%index%",
+        "label": "%slot%: %name%"
+      }
+    ]
+  },
+  "success": {
+    "base": {
+      "embeds": [
+        {
+          "title": "%username%",
+          "description": "%advancement_description%",
+          "color": "LuminousVividPink",
+          "fields": [
+            {
+              "name": "%equals%\n%advancement_title%",
+              "value": "**%equals%**"
+            }
+          ],
+          "image": "https://cdn.discordapp.com/attachments/844493685244297226/849604323264430140/unknown.png"
+        }
+      ]
+    },
+    "done": {
+      "embeds": [
+        {
+          "footer": {
+            "text": "Advancement unlocked/completed",
+            "icon_url": "https://cdn.discordapp.com/emojis/849224496232660992.png"
+          }
+        }
+      ]
+    },
+    "not_done": {
+      "embeds": [
+        {
+          "footer": {
+            "text": "Advancement not unlocked/completed",
+            "icon_url": "https://cdn.discordapp.com/emojis/849224496232660992.png"
+          }
+        }
+      ]
+    },
+    "final": {
+      "embeds": [
+        {
+          "fields": [
+            {
+              "name": "**Requirement**",
+              "value": "%advancement_requirement%"
+            },
+            {
+              "name": "**Unlocked on**",
+              "value": "%advancement_timestamp%"
+            }
+          ]
+        }
+      ],
+      "console": "Sent advancement %advancement_title% of %username%"
+    }
   }
-]
+}
