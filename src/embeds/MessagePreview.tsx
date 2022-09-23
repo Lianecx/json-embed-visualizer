@@ -1,6 +1,5 @@
 import React from 'react';
-import { DiscordButtons, DiscordMessage } from '@discord-message-components/react';
-import '@discord-message-components/react/dist/style.css'
+import { DiscordButtons, DiscordMessage} from '@discord-message-components/react';
 import EmbedPreview, { EmbedPreviewProps } from './EmbedPreview';
 import { ComponentType } from "discord-api-types/v10";
 import ButtonPreview, { ButtonPreviewProps } from './ButtonPreview';
@@ -12,7 +11,7 @@ export type MessagePreviewProps = {
         components?: (ButtonPreviewProps['button'] | SelectMenuPreviewProps['selectMenu'])[],
         console?: string,
     },
-    key: string,
+    path: string,
 }
 
 class MessagePreview extends React.Component<MessagePreviewProps> {
@@ -24,11 +23,18 @@ class MessagePreview extends React.Component<MessagePreviewProps> {
         const selectMenus = message.components?.filter(component => ComponentType[component.type as keyof typeof ComponentType] === ComponentType.SelectMenu);
 
         return <DiscordMessage profile="mclinker">
-            {/*{embeds?.map((embed, i) => <EmbedPreview key={`${this.props.key}.${i}`} embed={embed} />)}*/}
-            {/*@ts-ignore*/}
-            {/*{buttons ? <DiscordButtons>{buttons?.map((button, i) => <ButtonPreview key={`${this.props.key}.${i}`} button={button} />)}</DiscordButtons> : null}*/}
-            {/*@ts-ignore*/}
-            {/*{selectMenus ? <div>{selectMenus?.map((selectMenu, i) => <SelectMenuPreview key={`${this.props.key}.${i}`} selectMenu={selectMenu} />)}</div> : null}*/}
+            {<div slot="embeds">
+                {embeds?.map((embed, i) => <EmbedPreview path={`${this.props.path}.${i}`} key={`${this.props.path}.embeds.${i}`} embed={embed} />)}
+            </div>}
+            {buttons ? <DiscordButtons><div slot="actions">
+                {/*//@ts-ignore*/}
+                {buttons?.map((button, i) => <ButtonPreview path={`${this.props.path}.components.${i}`} key={`${this.props.path}.components.${i}`} button={button} />)}
+            </div></DiscordButtons> : null}
+            {selectMenus ? <div className="discord-select-menus"><div slot="actions">
+                {/*@ts-ignore*/}
+                {selectMenus?.map((selectMenu, i) => <SelectMenuPreview path={`${this.props.path}.components.${i}`} key={`${this.props.path}.components.${i}`} selectMenu={selectMenu} />)}
+            </div></div> : null}
+
         </DiscordMessage>
     }
 }

@@ -10,6 +10,7 @@ import { APIEmbed } from "discord-api-types/v10";
 
 export type EmbedPreviewProps = {
     embed: Omit<APIEmbed, 'image' | 'thumbnail' | 'video' | 'provider' | 'type'> & { image?: string, thumbnail?: string, console?: string },
+    path: string,
 }
 
 class EmbedPreview extends React.Component<EmbedPreviewProps> {
@@ -28,10 +29,11 @@ class EmbedPreview extends React.Component<EmbedPreviewProps> {
             thumbnail={embed.thumbnail}
             timestamp={embed.timestamp}
             url={embed.url}
+            key={this.props.path}
         >
             <DiscordMarkdown>{embed.description}</DiscordMarkdown>
             <DiscordEmbedFields>
-                {embed.fields?.map(field => <DiscordEmbedField fieldTitle={field.name} inline={field.inline}>
+                {embed.fields?.map((field, i) => <DiscordEmbedField fieldTitle={field.name} inline={field.inline} key={`${this.props.path}.fields.${i}`}>
                     <DiscordMarkdown>{field.value}</DiscordMarkdown>
                 </DiscordEmbedField>)}
             </DiscordEmbedFields>

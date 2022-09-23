@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import '@discord-message-components/react/dist/style.css'
 import MessagePreviewTable, {MessagePreviewTableProps} from './embeds/MessagePreviewTable';
 import messages from './assets/embeds.json';
 
@@ -23,7 +24,6 @@ class App extends React.Component {
         }
 
         const data = findMessages(messages, "keys");
-        console.log(data);
 
         return <div className="App">
             <MessagePreviewTable data={data}/>
